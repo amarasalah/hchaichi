@@ -1,6 +1,6 @@
 // AuthContext.js
-import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -16,13 +16,15 @@ export const AuthProvider = ({ children }) => {
 
   const [userID, setUserID] = useState(null);
 
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/protected', { withCredentials: true });
+        const response = await axios.get(
+          "https://hchaichi-bmqq.vercel.app/protected",
+          { withCredentials: true }
+        );
         if (response.data.isAuthenticated && response.data.user) {
           setIsAuthenticated(true);
           setUserRole(response.data.user.role); // Assuming the role is sent in the response
@@ -34,7 +36,6 @@ export const AuthProvider = ({ children }) => {
           setUserLastName(response.data.user.lastName);
 
           setUserID(response.data.user.id);
-
         } else {
           setIsAuthenticated(false);
           setUserRole(null);
@@ -64,13 +65,17 @@ export const AuthProvider = ({ children }) => {
     checkAuthStatus();
   }, []);
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     // Optional: handle side effects or alerts based on authentication status
   }, [isAuthenticated]); */
 
   const signOut = async () => {
     try {
-      await axios.post('http://localhost:4000/auth/signout', {}, { withCredentials: true });
+      await axios.post(
+        "https://hchaichi-bmqq.vercel.app/auth/signout",
+        {},
+        { withCredentials: true }
+      );
       setIsAuthenticated(false);
       setUserRole(null);
       setUserEmail(null);
@@ -81,7 +86,6 @@ export const AuthProvider = ({ children }) => {
       setUserLastName(null);
 
       setUserID(null);
-
     } catch (error) {
       console.error("Error signing out", error);
     }
@@ -99,8 +103,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-bs-theme', theme);
-    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute("data-bs-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   const toggleTheme = (newTheme) => {
@@ -108,7 +112,22 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, userRole,  userEmail,  userImageUrl, userImage,userFirstName,userLastName ,signOut,userID, updateUser, theme, toggleTheme  }}>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        userRole,
+        userEmail,
+        userImageUrl,
+        userImage,
+        userFirstName,
+        userLastName,
+        signOut,
+        userID,
+        updateUser,
+        theme,
+        toggleTheme,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
