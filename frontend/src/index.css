@@ -1,0 +1,41 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+ */
+
+/*  #image_preview,#image_preview_material,#image_preview_angle {
+  padding: 5px;
+  border: 2px dashed rgb(204, 204, 204);
+  width: 300px;
+  height: auto;
+}
+
+span.imgCheckbox0::before, span.imgCheckbox1::before,span.imgCheckbox2::before {
+  top: 5px !important;
+  left: 5px !important;
+}
+
+
+
+.image-input-placeholder {
+  background-image: url('/assets/media/svg/files/blank-image.svg');
+}
+
+[data-bs-theme="dark"] .image-input-placeholder {
+  background-image: url('/assets/media/svg/files/blank-image-dark.svg');
+} */
+
+#checkbox_container_A img:hover{
+  border: 2px solid black !important;
+  cursor: pointer;
+}
